@@ -1,0 +1,51 @@
+conky.config = {
+	alignment = 'top_left',
+	background = true,
+	color2 = 'ccaa45',
+	cpu_avg_samples = 2,
+	default_color = 'FFFFFF',
+	double_buffer = true,
+	font = 'Bitstream Vera Sans:size=8',
+	draw_shades = false,
+	gap_x = 25,
+	gap_y = 30,
+	minimum_width = 200,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 2.0,
+	use_xft = true,
+}
+conky.text = [[
+${color2}A L M A C E N A M I E N T O
+$hr
+Raiz: ${alignr}$color${fs_used /} / ${fs_size /}
+${color gold}${fs_bar 10 /}${color grey}
+${color2}Home: ${alignr}$color${fs_used /home} / ${fs_size /home}
+${color gold}${fs_bar 10 /home}${color grey}
+${color2}Datos: ${alignr}$color${fs_used /home/draexx/Data} / ${fs_size /home/draexx/Data}
+${color gold}${fs_bar 10 /home/draexx/Data}${color grey}
+
+
+${color2}W I F I  ${wireless_essid wlo1}${alignr}${color}${downspeed wlo1}
+$hr
+${color2}Entrada/Salida ${alignr}${color}${totaldown wlo1} / ${totalup wlo1}
+${color2}IP Local ${alignr}${color}${addr wlo1}
+${downspeedgraph wlo1 20,200 000000 ccaa45}
+
+${color2}L A N${alignr}${color}${downspeed enp0s25}
+$hr
+${color2}Entrada/Salida ${alignr}${color}${totaldown enp0s25} / ${totalup enp0s25}
+${color2}IP Local ${alignr}${color}${addr enp0s25}
+${downspeedgraph enp0s25 20,200 000000 ccaa45}
+
+${color2}I P  P U B L I C A
+$hr
+${color}${execi 3600 curl ifconfig.me}
+
+${color2}T E M P E R A T U R A
+$hr
+${color2}CPU : ${color}${hwmon 1 temp 1}°C
+
+]]
