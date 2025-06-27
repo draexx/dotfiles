@@ -24,8 +24,8 @@ Raiz: ${alignr}$color${fs_used /} / ${fs_size /}
 ${color gold}${fs_bar 10 /}${color grey}
 ${color2}Home: ${alignr}$color${fs_used /home} / ${fs_size /home}
 ${color gold}${fs_bar 10 /home}${color grey}
-${color2}Datos: ${alignr}$color${fs_used /home/draexx/Data} / ${fs_size /home/draexx/Data}
-${color gold}${fs_bar 10 /home/draexx/Data}${color grey}
+${color2}Datos: ${alignr}$color${fs_used /home/draexx} / ${fs_size /home/draexx}
+${color gold}${fs_bar 10 /home/draexx}${color grey}
 
 
 ${color2}W I F I  ${wireless_essid wlo1}${alignr}${color}${downspeed wlo1}

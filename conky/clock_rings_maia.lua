@@ -113,7 +113,7 @@ settings_table = {
 	},
 	{
 		name='fs_used_perc',
-		arg='/home/draexx/Data',
+		arg='/home/draexx',
 		max=100,
 		bg_colour=0xffffff,
 		bg_alpha=0.2,
@@ -146,6 +146,7 @@ clock_alpha=0.5
 show_seconds=true
 
 require 'cairo'
+require 'cairo_xlib'
 
 function rgb_to_r_g_b(colour,alpha)
 	return ((colour / 0x10000) % 0x100) / 255., ((colour / 0x100) % 0x100) / 255., (colour % 0x100) / 255., alpha
@@ -237,12 +238,12 @@ function conky_clock_rings()
 		draw_ring(cr,pct,pt)
 	end
 
-	
+
 
 	if conky_window==nil then return end
 	local cs=cairo_xlib_surface_create(conky_window.display,conky_window.drawable,conky_window.visual, conky_window.width,conky_window.height)
 
-	local cr=cairo_create(cs)	
+	local cr=cairo_create(cs)
 
 	local updates=conky_parse('${updates}')
 	update_num=tonumber(updates)

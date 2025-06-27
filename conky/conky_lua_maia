@@ -34,7 +34,7 @@ conky.config = {
 	lua_draw_hook_pre = 'clock_rings'
 }
 conky.text = [[
-#${voffset -17}${image /usr/share/icons/logo_green.png -p 69,116 -s 60x74}
+#${voffset -17}${image /usr/share/icons/manjaro-i3.png -p 116,116 -s 48x48}
 ${color}${voffset 273}${goto 112}${font Santana:size=24:style=Bold}${time %H:%M}
 #${voffset 125}${goto 116}${font Santana:style=Bold:size=12}${time %p}${font}
 ]]
