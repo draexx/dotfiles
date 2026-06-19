@@ -1,341 +1,349 @@
-# Mis Configuraciones Personales (Dotfiles)
+# 🖥️ Mis Configuraciones Personales (Dotfiles)
 
-Este repositorio contiene mi colección personal de archivos de configuración para diversas herramientas y aplicaciones que uso en mi sistema operativo Linux y macOS. El objetivo es mantener un entorno de trabajo consistente, productivo y estéticamente agradable.
+Este repositorio contiene mi colección personal de archivos de configuración para diversas herramientas y aplicaciones que uso en **Linux** (i3wm) y **macOS** (MacBook Air). El objetivo es mantener un entorno de trabajo consistente, productivo y estéticamente agradable.
 
 ## Tabla de Contenidos
 
-- Requerimientos
-- Instalación
-- Uso
-- Detalles de las Configuraciones
-- Herramientas Adicionales
-- Agradecimientos
+- [Requerimientos](#requerimientos)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Detalles de las Configuraciones](#detalles-de-las-configuraciones)
+- [Herramientas Adicionales](#herramientas-adicionales)
+- [Notas macOS](#notas-macos)
+- [Agradecimientos](#agradecimientos)
+
+---
 
 ## Requerimientos
 
-Para utilizar estas configuraciones, necesitarás tener instalados los siguientes programas. A continuación, se detallan los programas y cómo instalarlos en sistemas basados en Debian/Ubuntu (usando apt), Arch Linux (usando pacman) y macOS (usando brew).
+Para utilizar estas configuraciones, necesitarás tener instalados los siguientes programas.
 
 ### General
 
-* zsh: Un potente intérprete de comandos.
-  - sudo apt install zsh
-  - sudo pacman -S zsh
-  - brew install zsh
+| Herramienta | apt (Debian/Ubuntu) | pacman (Arch) | brew (macOS) |
+|---|---|---|---|
+| **zsh** | `sudo apt install zsh` | `sudo pacman -S zsh` | `brew install zsh` |
+| **oh-my-zsh** | [ohmyz.sh](https://ohmyz.sh/) | [ohmyz.sh](https://ohmyz.sh/) | [ohmyz.sh](https://ohmyz.sh/) |
+| **starship** | `sudo apt install starship` | `sudo pacman -S starship` | `brew install starship` |
+| **fastfetch** | `sudo apt install fastfetch` | `sudo pacman -S fastfetch` | `brew install fastfetch` |
+| **btop** | `sudo apt install btop` | `sudo pacman -S btop` | `brew install btop` |
+| **glances** | `sudo apt install glances` | `sudo pacman -S glances` | `brew install glances` |
+| **eza** | `sudo apt install eza` | `sudo pacman -S eza` | `brew install eza` |
+| **duf** | `sudo apt install duf` | `sudo pacman -S duf` | `brew install duf` |
+| **kitty** | `sudo apt install kitty` | `sudo pacman -S kitty` | `brew install kitty` |
+| **zellij** | `cargo install --locked zellij` | `sudo pacman -S zellij` | `brew install zellij` |
+| **cmatrix** | `sudo apt install cmatrix` | `sudo pacman -S cmatrix` | `brew install cmatrix` |
 
-* oh-my-zsh: Un framework para gestionar la configuración de zsh.
-  - Sigue las instrucciones en https://ohmyz.sh/
+- **Hack Nerd Font:** fuente usada en Kitty, necesaria para los íconos.
+  - Linux: descargá desde [nerdfonts.com](https://www.nerdfonts.com/font-downloads) y colocá en `~/.local/share/fonts/`
+  - macOS: `brew install font-hack-nerd-font`
+- **VSCode o Cursor:** editores de código. Descargá desde [code.visualstudio.com](https://code.visualstudio.com/) o [cursor.sh](https://cursor.sh/)
 
-* starship: Un prompt minimalista, rápido y personalizable para cualquier shell.
-  - sudo apt install starship (puede requerir un PPA)
-  - sudo pacman -S starship
-  - brew install starship
+> Nota: algunos paquetes pueden requerir repositorios adicionales (PPAs en Ubuntu, AUR en Arch) según tu distribución y versión.
 
-* fastfetch: Una herramienta para mostrar información del sistema de forma rápida.
-  - sudo apt install fastfetch (puede requerir un PPA)
-  - sudo pacman -S fastfetch
-  - brew install fastfetch
+### Plugins de Zsh (instalación manual)
 
-* Hack Nerd Font: Fuente tipográfica usada en Kitty. Necesaria para los iconos.
-  - Descarga desde https://www.nerdfonts.com/font-downloads y coloca en ~/.local/share/fonts/
+```bash
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-* VSCode o Cursor: Editores de código.
-  - Descargar desde https://code.visualstudio.com/ o https://cursor.sh/
+# zsh-autocomplete
+git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
 
-* btop: Un monitor de sistema con una interfaz gráfica atractiva y moderna.
-  - sudo apt install btop
-  - sudo pacman -S btop
-  - brew install btop
+# fast-syntax-highlighting
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+```
 
-* glances: Un monitor de sistema en tiempo real.
-  - sudo apt install glances
-  - sudo pacman -S glances
-  - brew install glances
+### Específicos de Linux
 
-* eza: Un reemplazo moderno para ls.
-  - sudo apt install eza (puede requerir un PPA)
-  - sudo pacman -S eza
-  - brew install eza
+| Herramienta | apt | pacman |
+|---|---|---|
+| **i3-wm** | `sudo apt install i3` | `sudo pacman -S i3-wm` |
+| **i3status** | `sudo apt install i3status` | `sudo pacman -S i3status` |
+| **dmenu / rofi** | `sudo apt install rofi` | `sudo pacman -S rofi` |
+| **feh** | `sudo apt install feh` | `sudo pacman -S feh` |
+| **Conky** | `sudo apt install conky-all` | `sudo pacman -S conky` |
+| **Lua** | `sudo apt install lua5.3` | `sudo pacman -S lua` |
 
-* duf: Una utilidad para visualizar el uso del disco.
-  - sudo apt install duf (puede requerir un PPA)
-  - sudo pacman -S duf
-  - brew install duf
-
-* cmatrix: (Opcional) Un efecto de lluvia de código Matrix en la terminal.
-  - sudo apt install cmatrix
-  - sudo pacman -S cmatrix
-  - brew install cmatrix
-
-### Específicos de Configuración
-
-#### CONKY
-
-* Conky: Un monitor de sistema ligero para X.
-  - sudo apt install conky-all
-  - sudo pacman -S conky
-
-* Lua: Necesario para algunos scripts de Conky.
-  - sudo apt install lua5.3 (o la versión que necesite tu script)
-  - sudo pacman -S lua
-
-#### i3wm
-
-* i3-wm: Un gestor de ventanas tiling.
-  - sudo apt install i3
-  - sudo pacman -S i3-wm
-
-* i3status: Una utilidad para generar una barra de estado para i3.
-  - sudo apt install i3status
-  - sudo pacman -S i3status
-
-* dmenu (o un lanzador compatible como rofi): Para lanzar aplicaciones.
-  - sudo apt install dmenu o sudo apt install rofi
-  - sudo pacman -S dmenu o sudo pacman -S rofi
-
-* feh o nitrogen: Para gestionar fondos de pantalla.
-  - sudo apt install feh o sudo apt install nitrogen
-  - sudo pacman -S feh o sudo pacman -S nitrogen
-
-#### Kitty
-
-* Kitty: Un emulador de terminal rápido, con muchas funciones y acelerado por GPU.
-  - sudo apt install kitty
-  - sudo pacman -S kitty
-  - brew install kitty
-
-#### Zellij
-
-* Zellij: Un multiplexor de terminal y entorno de trabajo.
-  - cargo install --locked zellij (requiere Rust y Cargo)
-  - sudo pacman -S zellij (puede estar en AUR)
-  - brew install zellij
-
-Nota: Algunos paquetes pueden tener nombres diferentes o requerir repositorios adicionales (como PPAs en Ubuntu, AUR en Arch Linux o Homebrew en macOS) dependiendo de la distribución y su versión.
+---
 
 ## Instalación
 
-A continuación se explica cómo instalar estas configuraciones en tu sistema.
+> ⚠️ **Advertencia:** realizá una copia de seguridad de tus configuraciones actuales antes de proceder, ya que los siguientes comandos pueden sobrescribir archivos existentes.
 
-ADVERTENCIA: Realiza una copia de seguridad de tus configuraciones actuales antes de proceder, ya que los siguientes comandos pueden sobrescribir archivos existentes.
+### 1. Clonar el repositorio
 
-1. Clona este repositorio:
-   git clone https://github.com/draexx/dotfiles.git
-   cd dotfiles
+```bash
+git clone https://github.com/draexx/dotfiles.git
+cd dotfiles
+```
 
-2. Copia los archivos de configuración:
+### 2. Copiar los archivos de configuración
 
-   * Conky:
-     mkdir -p ~/.config/conky
-     cp -r conky/* ~/.config/conky/
+**Conky:**
+```bash
+mkdir -p ~/.config/conky
+cp -r conky/* ~/.config/conky/
+```
 
-   * i3wm:
-     mkdir -p ~/.config/i3
-     cp i3wm/config ~/.config/i3/config
-     cp i3wm/i3status.conf ~/.config/i3/i3status.conf
+**i3wm:**
+```bash
+mkdir -p ~/.config/i3
+cp i3wm/config ~/.config/i3/config
+cp i3wm/i3status.conf ~/.config/i3/i3status.conf
+```
 
-   * Kitty:
-     mkdir -p ~/.config/kitty
-     cp kitty/kitty.conf ~/.config/kitty/kitty.conf
-     La configuración es completamente autónoma — no requiere theme.conf ni colors.conf externos. Los colores ANSI y el esquema visual están integrados directamente en kitty.conf.
+**Kitty:**
+```bash
+mkdir -p ~/.config/kitty
+cp kitty/kitty.conf ~/.config/kitty/kitty.conf
+```
+La configuración es completamente autónoma — no requiere `theme.conf` ni `colors.conf` externos. Los colores ANSI y el esquema visual están integrados directamente en `kitty.conf`.
 
-   * Zsh (.zshrc):
-     Instala primero los plugins de oh-my-zsh:
-     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-     git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
-     git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-     Luego copia el archivo de configuración:
-     cp zsh/.zshrc ~/.zshrc
-     source ~/.zshrc
+**Zsh:**
+```bash
+# Primero instalá los plugins (ver sección Requerimientos arriba)
+cp zsh/.zshrc ~/.zshrc
+source ~/.zshrc
+```
 
-   * Zellij:
-     mkdir -p ~/.config/zellij
-     cp zellij/config.kdl ~/.config/zellij/config.kdl
-     cp zellij/layout.kdl ~/.config/zellij/layout.kdl
+**Zellij:**
+```bash
+mkdir -p ~/.config/zellij
+cp zellij/config.kdl ~/.config/zellij/config.kdl
+cp zellij/layout.kdl ~/.config/zellij/layout.kdl
+```
 
-   * Starship (prompt de zsh):
-     Starship se inicializa automáticamente desde el .zshrc. La configuración personalizada se encuentra en starship/starship.toml.
-     mkdir -p ~/.config
-     cp starship/starship.toml ~/.config/starship.toml
+**Starship:**
+```bash
+mkdir -p ~/.config
+cp starship/starship.toml ~/.config/starship.toml
+```
+Starship se inicializa automáticamente desde el `.zshrc`. La configuración personalizada se encuentra en `starship/starship.toml`.
 
-   * btop:
-     mkdir -p ~/.config/btop
-     cp btop/btop.conf ~/.config/btop/btop.conf
+**btop:**
+```bash
+mkdir -p ~/.config/btop
+cp btop/btop.conf ~/.config/btop/btop.conf
+```
 
-Importante: Revisa las rutas y los nombres de los archivos de configuración específicos de cada programa, ya que pueden variar ligeramente. Los comandos anteriores asumen las ubicaciones más comunes.
+> Revisá las rutas y nombres de los archivos de cada programa, ya que pueden variar ligeramente según tu sistema.
+
+---
 
 ## Uso
 
-Una vez que hayas instalado los programas requeridos y copiado los archivos de configuración, así es como puedes empezar a usarlos:
-
 ### Conky
 
-Para iniciar Conky con una configuración específica, puedes ejecutarlo desde la terminal. Por ejemplo, para usar conky_maia:
+Para iniciar Conky con una configuración específica:
+```bash
 conky -c ~/.config/conky/conky_maia
+```
+Reemplazá `conky_maia` con cualquier otro archivo de la carpeta `conky/`.
 
-Puedes reemplazar conky_maia con el nombre de otro archivo de configuración de Conky que hayas copiado.
-
-Para que Conky se inicie automáticamente con tu sesión de escritorio, puedes añadir el comando anterior a las aplicaciones de inicio de tu entorno de escritorio o gestor de ventanas.
-- En i3wm: Añade exec --no-startup-id conky -c ~/.config/conky/tu_conky_config a tu archivo ~/.config/i3/config.
-- En otros entornos (GNOME, KDE, XFCE): Busca la configuración de "Aplicaciones al inicio" o "Autostart" y añade el comando.
+Para que Conky se inicie automáticamente:
+- **En i3wm:** agregá `exec --no-startup-id conky -c ~/.config/conky/conky_maia` a `~/.config/i3/config`
+- **En otros entornos (GNOME, KDE, XFCE):** buscá "Aplicaciones al inicio" o "Autostart"
 
 ### i3wm
 
-Para usar la configuración de i3wm:
-1. Asegúrate de haber copiado el archivo config a ~/.config/i3/config.
-2. Cierra la sesión actual de tu entorno de escritorio y, en la pantalla de inicio de sesión (display manager), selecciona "i3" como tu sesión antes de ingresar tu contraseña.
-3. Si ya estás en una sesión de i3, puedes recargar la configuración con el atajo de teclado predeterminado Mod+Shift+r (donde Mod suele ser la tecla Alt o Super/Windows).
+1. Copiá el archivo `config` a `~/.config/i3/config`
+2. En la pantalla de login, seleccioná **i3** como sesión
+3. Para recargar la config sin cerrar sesión: `Mod+Shift+R`
 
-Revisa el archivo ~/.config/i3/config para conocer los atajos de teclado personalizados y otras configuraciones.
+Revisá `~/.config/i3/config` para ver los atajos de teclado personalizados.
 
 ### Kitty
 
-Kitty aplicará automáticamente la configuración de ~/.config/kitty/kitty.conf cada vez que inicies una nueva ventana de terminal.
+Kitty aplica automáticamente la configuración de `~/.config/kitty/kitty.conf` al iniciar.
 
-- La configuración actual usa la fuente Hack Regular a 9.5pt con paleta de colores estilo GNOME Terminal (#171717 de fondo).
-- Las pestañas se muestran en la parte superior con estilo powerline angled.
-- Para recargar la configuración sin cerrar Kitty: Ctrl+Shift+F5.
+- Fuente: Hack Regular, 9.5pt con paleta estilo GNOME Terminal (`#171717` de fondo)
+- Pestañas en la parte superior con estilo `powerline angled`
+- Para recargar sin cerrar: `Ctrl+Shift+F5`
 
-Atajos de teclado:
-- Ctrl+Shift+T = Nueva pestaña
-- Ctrl+Shift+Q = Cerrar pestaña
-- Ctrl+Shift+Right = Siguiente pestaña
-- Ctrl+Shift+Left = Pestaña anterior
-- Ctrl+Shift+Alt+T = Renombrar pestaña
-- Ctrl+Shift+C = Copiar
-- Ctrl+Shift+V = Pegar
+| Atajo | Acción |
+|---|---|
+| `Ctrl+Shift+T` | Nueva pestaña |
+| `Ctrl+Shift+Q` | Cerrar pestaña |
+| `Ctrl+Shift+→` | Siguiente pestaña |
+| `Ctrl+Shift+←` | Pestaña anterior |
+| `Ctrl+Shift+Alt+T` | Renombrar pestaña |
+| `Ctrl+Shift+D` | Split vertical |
+| `Ctrl+Shift+S` | Split horizontal |
+| `Ctrl+Shift+C` | Copiar |
+| `Ctrl+Shift+V` | Pegar |
+| `Ctrl+Shift+F5` | Recargar config |
 
 ### Zsh
 
-El archivo zsh/.zshrc configura el entorno de shell completo con oh-my-zsh y los siguientes plugins:
-- zsh-autosuggestions: Sugiere comandos basados en el historial mientras escribes.
-- zsh-autocomplete: Autocompletado en tiempo real con menú interactivo.
-- fast-syntax-highlighting: Resaltado de sintaxis en tiempo real en la línea de comandos.
+El archivo `zsh/.zshrc` configura el entorno completo con oh-my-zsh y los siguientes plugins:
+
+- **zsh-autosuggestions:** sugiere comandos del historial mientras escribís
+- **zsh-autocomplete:** autocompletado en tiempo real con menú interactivo
+- **fast-syntax-highlighting:** resaltado de sintaxis en la línea de comandos
 
 Además incluye:
-- fastfetch al iniciar la terminal para mostrar info del sistema.
-- starship como prompt visual.
-- Atajo alias ssh="kitty +kitten ssh" para mantener la fuente en conexiones remotas.
-- Corrección del comportamiento de las teclas de flecha con zsh-autocomplete.
-- Alias para eza que reemplazan a ls con una versión moderna y con iconos.
+- `fastfetch` al iniciar la terminal para mostrar info del sistema
+- `starship` como prompt visual
+- `alias ssh="kitty +kitten ssh"` para mantener la fuente en conexiones remotas
+- Corrección del comportamiento de flechas con `zsh-autocomplete`
+- Alias para `eza` que reemplazan `ls` con íconos y colores
+- Alias `python → python3` para compatibilidad
 
 ### Zellij
 
-Zellij cargará su configuración desde ~/.config/zellij/config.kdl al iniciarse.
-zellij
+```bash
+zellij                                          # Iniciar con config default
+zellij --layout ~/.config/zellij/layout.kdl     # Iniciar con layout personalizado
+```
 
-Si deseas iniciar Zellij con un layout específico:
-zellij --layout ~/.config/zellij/layout.kdl
+### Starship
 
-### Starship (Zsh Prompt)
+Starship se inicializa automáticamente mediante `eval "$(starship init zsh)"` en el `.zshrc`. El prompt se aplica al abrir cualquier terminal Zsh. La configuración personalizada se encuentra en `~/.config/starship.toml`.
 
-Starship se inicializa automáticamente mediante la línea eval "$(starship init zsh)" incluida en el .zshrc. El prompt se aplica al abrir cualquier nueva terminal Zsh. La configuración personalizada se encuentra en ~/.config/starship.toml.
+---
 
 ## Detalles de las Configuraciones
 
-A continuación, se ofrece una breve descripción de cada conjunto de configuraciones incluidas en este repositorio.
-
 ### CONKY
-Archivos de configuración para Conky, un monitor de sistema ligero y personalizable para X11.
-- clock_rings_maia.lua: Script Lua para un widget de reloj con anillos.
-- conky_lua_maia
-- conky_maia
-- conky_maia1
-- conky_shortcuts_live_maia
-- conky1.10_shortcuts_maia
 
-==================== CAPTURA DE PANTALLA PARA CONKY ====================
+Archivos de configuración para Conky, monitor de sistema ligero y personalizable para X11.
+
+- `clock_rings_maia.lua` — script Lua para un widget de reloj con anillos
+- `conky_lua_maia`
+- `conky_maia`
+- `conky_maia1`
+- `conky_shortcuts_live_maia`
+- `conky1.10_shortcuts_maia`
+
 ![Vista previa de Conky](screenshots/conky_preview.png)
-(Coloca aquí tu captura de pantalla de Conky en acción)
 
 ### i3wm
-Configuración personalizada para i3-wm, un gestor de ventanas tiling para X11.
-- config: Archivo principal de configuración de i3.
-- config-i3: Posiblemente una variante o copia de seguridad de la configuración.
-- i3status.conf: Configuración para i3status, usado para generar la barra de estado de i3.
 
-==================== CAPTURA DE PANTALLA PARA I3WM ====================
+Configuración personalizada para i3-wm, gestor de ventanas tiling para X11.
+
+- `config` — archivo principal de configuración de i3
+- `config-i3` — variante o copia de seguridad
+- `i3status.conf` — configuración de la barra de estado
+
 ![Vista previa de i3wm](screenshots/i3wm_preview.png)
-(Coloca aquí tu captura de pantalla de i3wm en acción)
 
 ### Kitty
-Configuración para Kitty, un emulador de terminal rápido y con aceleración GPU.
-- kitty.conf: Configuración completa y autónoma. Incluye fuente, colores, pestañas y atajos de teclado en un solo archivo.
-  * Fuente: Hack Regular, 9.5pt
-  * Tema: Colores estilo GNOME Terminal con paleta ANSI completa (16 colores) integrada
-  * Pestañas: Barra superior con estilo powerline angled
-  * Opacidad: 90% de transparencia de fondo
 
-NOTA: Los archivos theme.conf y colors.conf ya no son necesarios — todo está integrado directamente en kitty.conf.
+Configuración para Kitty, emulador de terminal rápido con aceleración GPU.
 
-==================== CAPTURA DE PANTALLA PARA KITTY ====================
+- `kitty.conf` — configuración completa y autónoma
+  - Fuente: Hack Regular, 9.5pt
+  - Tema: colores estilo GNOME Terminal con paleta ANSI completa (16 colores) integrada
+  - Pestañas: barra superior con estilo `powerline angled`
+  - Opacidad: 90% de transparencia de fondo
+  - Splits nativos de ventana sin necesidad de Zellij
+
+> **Nota:** los archivos `theme.conf` y `colors.conf` ya no son necesarios — todo está integrado directamente en `kitty.conf`.
+
 ![Vista previa de Kitty](screenshots/kitty_preview.png)
-(Coloca aquí tu captura de pantalla de Kitty en acción)
 
 ### Zsh
-Configuración completa del entorno de shell para zsh con oh-my-zsh.
-- zsh/.zshrc: Archivo de configuración principal de zsh.
-  * Plugins: zsh-autosuggestions, zsh-autocomplete, fast-syntax-highlighting
-  * Prompt via Starship (eval "$(starship init zsh)")
-  * fastfetch al inicio de la terminal
-  * Alias python -> python3 y ssh -> kitty +kitten ssh
-  * Alias para eza (reemplazo de ls)
-  * Configuración de NVM para Node.js
 
-==================== CAPTURA DE PANTALLA PARA ZSH ====================
+Configuración completa del entorno de shell con oh-my-zsh.
+
+- `zsh/.zshrc` — archivo de configuración principal
+  - Plugins: `zsh-autosuggestions`, `zsh-autocomplete`, `fast-syntax-highlighting`
+  - Prompt via Starship (`eval "$(starship init zsh)"`)
+  - `fastfetch` al inicio de la terminal
+  - Alias `python → python3` y `ssh → kitty +kitten ssh`
+  - Alias para `eza` (reemplazo de `ls`)
+  - Configuración de NVM para Node.js
+
 ![Vista previa de Zsh](screenshots/zsh_preview.png)
-(Coloca aquí tu captura de pantalla de la terminal Zsh con Starship)
 
 ### Zellij
-Configuración para Zellij, un multiplexor de terminal y entorno de trabajo.
-- config.kdl: Archivo principal de configuración de Zellij, usando KDL (KDL Document Language).
-- layout.kdl: Define un layout específico para las sesiones de Zellij.
 
-==================== CAPTURA DE PANTALLA PARA ZELLIJ ====================
+Configuración para Zellij, multiplexor de terminal y entorno de trabajo.
+
+- `config.kdl` — archivo principal de configuración (KDL Document Language)
+- `layout.kdl` — define el layout de paneles para las sesiones
+
 ![Vista previa de Zellij](screenshots/zellij_preview.png)
-(Coloca aquí tu captura de pantalla de Zellij en acción)
 
 ### btop
-Configuración para btop, un monitor de sistema con interfaz gráfica.
-- btop.conf: Archivo de configuración principal que define colores, actualización, y qué información se muestra.
 
-==================== CAPTURA DE PANTALLA PARA BTOP ====================
+Configuración para btop, monitor de sistema TUI.
+
+- `btop.conf` — define tema, intervalo de actualización e información a mostrar
+  - Tema: gruvbox_dark
+  - Intervalo: 1.5 segundos
+  - Gráficas tipo braille para mayor detalle visual
+
 ![Vista previa de btop](screenshots/btop_preview.png)
-(Coloca aquí tu captura de pantalla de btop en acción)
 
 ### Starship
-Configuración personalizada del prompt para Zsh.
-- starship.toml: Archivo de configuración que define el formato, colores y módulos del prompt.
 
-==================== CAPTURA DE PANTALLA PARA STARSHIP ====================
+Configuración personalizada del prompt para Zsh.
+
+- `starship.toml` — define formato, colores y módulos del prompt
+  - Paleta coherente con los colores GNOME dark de Kitty
+  - Módulos activos: OS, directorio, git, Python, Node.js, Rust, Go, Docker, duración del comando
+
 ![Vista previa de Starship](screenshots/starship_preview.png)
-(Coloca aquí tu captura de pantalla del prompt de Starship)
+
+---
 
 ## Herramientas Adicionales
 
-Estas herramientas son opcionales, no requieren configuración específica, pero mejoran la experiencia general.
+Herramientas sin archivo de configuración propio en este repo, pero parte del stack.
 
-### cmatrix (Efecto Matrix)
-Un clásico para divertirse en la terminal.
-- Instalación: sudo apt install cmatrix, sudo pacman -S cmatrix, o brew install cmatrix.
-- Uso recomendado: cmatrix -b -C cyan (efecto azul en lugar de verde).
+### glances — Monitor en tiempo real
 
-### glances (Monitor en tiempo real)
-Alternativa moderna a top y htop.
-- Instalación: sudo apt install glances, sudo pacman -S glances, o brew install glances.
-- Uso recomendado: Simplemente ejecuta glances para ver el monitor interactivo. Puedes cambiar el tema presionando 2 (oscuro) o 5 (claro).
+Alternativa moderna a `top` y `htop` con soporte Docker y API REST.
 
-### duf (Uso de disco con interfaz mejorada)
-Alternativa visual a df.
-- Instalación: sudo apt install duf, sudo pacman -S duf, o brew install duf.
-- Uso recomendado: duf o duf --only-fs ext4,ntfs,apfs para filtrar discos.
+```bash
+glances        # Monitor interactivo
+glances -w     # Modo web en http://localhost:61208
+```
+Podés cambiar el tema presionando `2` (oscuro) o `5` (claro).
+
+### duf — Uso de disco visual
+
+Alternativa visual a `df`. Alias configurado en `.zshrc`.
+
+```bash
+duf                            # Ver todos los discos
+duf --only-fs ext4,ntfs,apfs   # Filtrar por tipo de filesystem
+```
+
+### cmatrix — Efecto Matrix
+
+```bash
+cmatrix -b -C cyan    # Efecto azul en lugar de verde
+```
+
+---
+
+## Notas macOS
+
+Diferencias y consideraciones para MacBook Air:
+
+- **Homebrew** se inicializa automáticamente en el `.zshrc` (compatible con Apple Silicon e Intel)
+- **Kitty** funciona en macOS; si `TERM=xterm-kitty` causa problemas en SSH, el `.zshrc` lo ajusta automáticamente
+- **i3wm y Conky** son exclusivos de Linux — no aplican en macOS
+- **Fuente:** instalá con `brew install font-hack-nerd-font`
+- **Actualización del sistema:** usá el alias `update-mac` → `brew update && brew upgrade`
+- **Zellij en macOS:** `brew install zellij`
+
+---
 
 ## Agradecimientos
 
 Este proyecto se ha inspirado en el trabajo de muchas personas en la comunidad de personalización de Linux.
 
-- Agradecimientos a la comunidad de r/unixporn por la inspiración constante.
-- Inspirado por los dotfiles de otros proyectos de código abierto.
+- Comunidad de [r/unixporn](https://reddit.com/r/unixporn) por la inspiración constante
+- Inspirado por los dotfiles de otros proyectos de código abierto
+- Proyectos: [Oh My Zsh](https://ohmyz.sh/), [Starship](https://starship.rs/), [Zellij](https://zellij.dev/), [btop](https://github.com/aristocratos/btop), [eza](https://github.com/eza-community/eza)
 
 ---
 
-Si encuentras algún problema o tienes sugerencias, no dudes en abrir un issue en el repositorio.
+Si encontrás algún problema o tenés sugerencias, no dudes en abrir un [issue](https://github.com/draexx/dotfiles/issues).
