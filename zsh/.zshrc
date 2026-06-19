@@ -123,13 +123,27 @@ alias uninstall-spyder=/Users/draexx/Library/spyder-6/uninstall-spyder.sh
 # Added by Antigravity IDE
 export PATH="/Users/draexx/.antigravity-ide/antigravity-ide/bin:$PATH"
 
-# Parche para corregir el punto y coma (;) al usar las flechas con zsh-autocomplete
-bindkey '^[[A' up-line-or-history
-bindkey '^[[B' down-line-or-history
+# =========================================================
+# DESACTIVACIÓN INCONDICIONAL DEL SEMICOLON
+# =========================================================
+# 1. Parche definitivo: Obligar a las flechas a ignorar el plugin y usar el historial nativo
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N up-line-or-beginning-search
 
-# Configurar zsh-autocomplete para que use las flechas de forma tradicional
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':zsh-autocomplete:*' key-bindings traditional
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+# 2. Bloqueo total del plugin por si acaso
+zstyle ':zsh-autocomplete:history-lines' add-semicolon no
+zstyle ':zsh-autocomplete:history-search' add-semicolon no
+zstyle ':zsh-autocomplete:*' add-semicolon no
+zstyle ':zsh-autocomplete:*' append-semicolon no
 zstyle ':autocomplete:*' add-semicolon no
+zstyle ':autocomplete:*' append-semicolon no
+
+# Colores de la lista y tu alias de SSH
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 alias ssh="kitty +kitten ssh"
