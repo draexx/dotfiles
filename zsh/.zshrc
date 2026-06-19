@@ -147,3 +147,11 @@ zstyle ':autocomplete:*' append-semicolon no
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 alias ssh="kitty +kitten ssh"
+
+# Alias para eza (reemplazo moderno de ls)
+if command -v eza &> /dev/null; then
+    alias ls='eza --icons=auto'        # Iconos y colores
+    alias ll='eza -l --icons=auto'     # Lista detallada
+    alias la='eza -la --icons=auto'    # Lista detallada incluyendo ocultos
+    alias tree='eza --tree --icons=auto' # Vista de árbol
+fi
