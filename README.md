@@ -188,7 +188,7 @@ El archivo `zsh/.zshrc` configura el entorno completo con oh-my-zsh y los siguie
 Además incluye:
 - `fastfetch` al iniciar la terminal para mostrar info del sistema
 - `starship` como prompt visual
-- `alias ssh="kitty +kitten ssh"` para mantener la fuente en conexiones remotas
+- `alias ssh="kitty +kitten ssh"` para mantener la fuente en conexiones remotas (restaurado a `env ssh` automáticamente si se usa Warp Terminal)
 - Corrección del comportamiento de flechas con `zsh-autocomplete`
 - Alias para `eza` que reemplazan `ls` con íconos y colores
 - Alias `python → python3` para compatibilidad
@@ -241,6 +241,7 @@ Configuración para Kitty, emulador de terminal rápido con aceleración GPU.
   - Pestañas: barra superior con estilo `powerline angled`
   - Opacidad: 90% de transparencia de fondo
   - Splits nativos de ventana sin necesidad de Zellij
+  - Compatibilidad SSH: Establecido `term = "xterm-256color"` en lugar de `xterm-kitty` para prevenir errores de tipo de terminal desconocido en servidores remotos
 
 > **Nota:** los archivos `theme.conf` y `colors.conf` ya no son necesarios — todo está integrado directamente en `kitty.conf`.
 
@@ -254,7 +255,7 @@ Configuración completa del entorno de shell con oh-my-zsh.
   - Plugins: `zsh-autosuggestions`, `zsh-autocomplete`, `fast-syntax-highlighting`
   - Prompt via Starship (`eval "$(starship init zsh)"`)
   - `fastfetch` al inicio de la terminal
-  - Alias `python → python3` y `ssh → kitty +kitten ssh`
+  - Alias `python → python3` y `ssh → kitty +kitten ssh` (desactivado bajo Warp Terminal para evitar conflictos con su envoltura de SSH)
   - Alias para `eza` (reemplazo de `ls`)
   - Configuración de NVM para Node.js
 
@@ -328,7 +329,7 @@ cmatrix -b -C cyan    # Efecto azul en lugar de verde
 Diferencias y consideraciones para MacBook Air:
 
 - **Homebrew** se inicializa automáticamente en el `.zshrc` (compatible con Apple Silicon e Intel)
-- **Kitty** funciona en macOS; si `TERM=xterm-kitty` causa problemas en SSH, el `.zshrc` lo ajusta automáticamente
+- **Kitty** funciona en macOS; configurado con `term = "xterm-256color"` para máxima compatibilidad con servidores remotos sin requerir ajustes adicionales de `TERM`
 - **i3wm y Conky** son exclusivos de Linux — no aplican en macOS
 - **Fuente:** instalá con `brew install font-hack-nerd-font`
 - **Actualización del sistema:** usá el alias `update-mac` → `brew update && brew upgrade`

@@ -155,3 +155,8 @@ if command -v eza &> /dev/null; then
     alias la='eza -la --icons=auto'    # Lista detallada incluyendo ocultos
     alias tree='eza --tree --icons=auto' # Vista de árbol
 fi
+
+# Restaurar SSH nativo solo si estás usando la terminal Warp
+if [[ "$TERM_PROGRAM" == "WarpTerminal" ]]; then
+    alias ssh="env ssh"
+fi
